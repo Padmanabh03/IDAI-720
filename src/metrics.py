@@ -17,6 +17,9 @@ class Metrics:
         # TPR = #(y=1, y_pred=1) / #(y=1)
         # Write your code below:
 
+        tpr1 = np.sum((self.y == 1) & (self.y_pred == 1) & (s == 1)) / np.sum((self.y == 1) & (s == 1))
+        tpr0 = np.sum((self.y == 1) & (self.y_pred == 1) & (s == 0)) / np.sum((self.y == 1) & (s == 0))
+
         return tpr1-tpr0
 
     def aod(self, s):
@@ -27,6 +30,11 @@ class Metrics:
         # FPR = #(y=0, y_pred=1) / #(y=0)
         # Write your code below:
 
+        tpr1 = np.sum((self.y == 1) & (self.y_pred == 1) & (s == 1)) / np.sum((self.y == 1) & (s == 1))
+        tpr0 = np.sum((self.y == 1) & (self.y_pred == 1) & (s == 0)) / np.sum((self.y == 1) & (s == 0))
+        fpr1 = np.sum((self.y == 0) & (self.y_pred == 1) & (s == 1)) / np.sum((self.y == 0) & (s == 1))
+        fpr0 = np.sum((self.y == 0) & (self.y_pred == 1) & (s == 0)) / np.sum((self.y == 0) & (s == 0))
+
         return (tpr1 - tpr0 + fpr1 - fpr0)/2.0
 
     def spd(self, s):
@@ -36,6 +44,9 @@ class Metrics:
         # PR = #(y_pred=1) / #y
         # Write your code below:
 
+        pr1 = np.sum((self.y_pred == 1) & (s == 1)) / np.sum(s == 1)
+        pr0 = np.sum((self.y_pred == 1) & (s == 0)) / np.sum(s == 0)
+        
         return pr1 - pr0
 
 
